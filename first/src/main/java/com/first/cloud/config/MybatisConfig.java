@@ -1,4 +1,4 @@
-package com.first.cloud.first.config;
+package com.first.cloud.config;
 
 import com.github.pagehelper.PageHelper;
 import org.springframework.context.annotation.Bean;

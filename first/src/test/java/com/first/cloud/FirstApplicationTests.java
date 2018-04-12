@@ -1,4 +1,4 @@
-package com.first.cloud.first;
+package com.first.cloud;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
