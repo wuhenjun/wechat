@@ -12,6 +12,7 @@
         <module>starter</module>
         <module>first</module>
         <module>zuul</module>
+        <module>core</module>
     </modules>
 
 
