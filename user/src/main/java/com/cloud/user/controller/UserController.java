@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/api/user")
-public class UserControll {
+public class UserController {
     @Autowired
     private UserService userService;
 
@@ -30,6 +30,7 @@ public class UserControll {
     public ResultInfo<User> login(@RequestBody @ApiParam(value="user") User user, HttpServletResponse response){
         User loginUser = userService.login(user);
         Cookie cookie = new Cookie("token","");
+        response.addCookie(cookie);
         return ResultBuilder.build(loginUser);
     }
 }

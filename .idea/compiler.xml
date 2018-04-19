@@ -13,7 +13,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="core" target="1.5" />
+      <module name="core" target="1.8" />
       <module name="first" target="1.8" />
       <module name="hewei" target="1.5" />
       <module name="starter" target="1.8" />

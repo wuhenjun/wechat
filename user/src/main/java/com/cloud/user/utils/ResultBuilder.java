@@ -12,9 +12,14 @@ public class ResultBuilder implements Serializable{
      */
     public static ResultInfo build(Object... args){
         ResultInfo resultInfo = new ResultInfo();
-        resultInfo.setResult((Integer)args[0]);
-        resultInfo.setResultCode(args.length >= 2 ? (Integer)args[1] : 666);
-        resultInfo.setResultMsg(args.length == 3 ? (String) args[2] : "");
+        try {
+            resultInfo.setResult((Integer) args[0]);
+            resultInfo.setResultCode(args.length >= 2 ? (Integer) args[1] : 666);
+            resultInfo.setResultMsg(args.length == 3 ? (String) args[2] : "");
+        }catch (IllegalArgumentException e){
+            resultInfo.setResultCode(-777);
+            resultInfo.setResultMsg(e.getMessage());
+        }
         return resultInfo;
     }
 }
