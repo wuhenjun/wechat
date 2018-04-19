@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud.user.mapper.UserMaper">
+
+    <insert id="insertUser" parameterType="com.cloud.user.model.User" >
+        INSERT INTO HW_USER(EMAIL,PASSWORD,GENDER,NICK_NAME
+        <if test="sign != null and sign != ''">
+            ,SIGN
+        </if>
+        <if test="icon != null and icon != ''">
+           , ICON
+        </if>
+        ) VALUES
+        (#{userAccount},#{password},#{gender},#{nickName}
+        <if test="sign != null and sign != ''">
+            ,#{sign}
+        </if>
+        <if test="icon != null and icon != ''">
+            ,#{sign}
+        </if>
+        )
+    </insert>
+
+    <select id="login" parameterType="com.cloud.user.model.User" resultType="com.cloud.user.model.User">
+        SELECT USER_ID AS userId,EMAIL as userAccount,GENDER as gender,NICK_NAME as nickName,SIGN as sign,ICON as icon
+        FROM HW_USER
+        WHERE EMAIL=#{userAccount} AND PASSWORD=#{password}
+    </select>
+
+</mapper>

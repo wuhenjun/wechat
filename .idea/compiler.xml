@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="core" />
         <module name="first" />
+        <module name="user" />
         <module name="zuul" />
       </profile>
     </annotationProcessing>
@@ -16,6 +17,7 @@
       <module name="first" target="1.8" />
       <module name="hewei" target="1.5" />
       <module name="starter" target="1.8" />
+      <module name="user" target="1.8" />
       <module name="zuul" target="1.8" />
     </bytecodeTargetLevel>
   </component>
