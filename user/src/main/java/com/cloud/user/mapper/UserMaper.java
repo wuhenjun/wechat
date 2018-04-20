@@ -18,4 +18,11 @@ public interface UserMaper {
      * @return
      */
     public User login(User user);
+
+    /**
+     * 更新用户基本信息
+     * @param user
+     * @return
+     */
+    public int updateUserInfo(User user);
 }

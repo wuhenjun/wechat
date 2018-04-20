@@ -7,6 +7,7 @@ import com.cloud.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -29,7 +30,10 @@ public class UserServiceImpl implements UserService{
             if(StringUtils.isBlank(user.getUserAccount()) || StringUtils.isBlank(user.getPassword())){
                 throw new IllegalArgumentException("请填写用户名与密码");
             }
-            return userMaper.login(user);
+            User loginUser =  userMaper.login(user);
+            //校验是否一致
+            Objects.requireNonNull(loginUser,"用户名或密码不正确");
+            return loginUser;
         }).orElseThrow(()->new IllegalArgumentException("请填写用户名与密码"));
     }
 
