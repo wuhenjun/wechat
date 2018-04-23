@@ -1,1 +1,3 @@
+com\cloud\util\CryptoUtils.class
+com\cloud\util\FileUploadUtils.class
 com\cloud\util\StringUtils.class
