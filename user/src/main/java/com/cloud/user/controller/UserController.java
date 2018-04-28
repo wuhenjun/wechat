@@ -2,8 +2,9 @@ package com.cloud.user.controller;
 
 import com.cloud.user.model.User;
 import com.cloud.user.service.UserService;
-import com.cloud.user.utils.ResultBuilder;
-import com.cloud.user.utils.ResultInfo;
+import com.cloud.user.utils.RedisUtil;
+import com.cloud.util.ResultBuilder;
+import com.cloud.util.ResultInfo;
 import com.cloud.util.CryptoUtils;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
 
@@ -21,6 +21,8 @@ import java.io.UnsupportedEncodingException;
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private RedisUtil redisUtil;
 
     @RequestMapping(value = "/insertUser",method = RequestMethod.POST)
     @ApiOperation(value = "insertUser")
@@ -33,9 +35,11 @@ public class UserController {
     public ResultInfo<User> login(@RequestBody @ApiParam(value="user") User user, HttpServletResponse response) throws UnsupportedEncodingException {
         User loginUser = userService.login(user);
         //cookie增加token
-        Cookie cookie = new Cookie("token", CryptoUtils.makeToken(loginUser.getUserId()+loginUser.getUserAccount()));
+        String token = CryptoUtils.makeToken(loginUser.getUserId()+loginUser.getUserAccount());
+        Cookie cookie = new Cookie("token",token );
         response.addCookie(cookie);
         //redis中存储User对应信息
+        redisUtil.set(token,loginUser,1000*60*30L);
         return ResultBuilder.build(loginUser);
     }
 

@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="authority" />
         <module name="core" />
         <module name="first" />
         <module name="user" />
@@ -13,6 +14,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="authority" target="1.8" />
       <module name="core" target="1.8" />
       <module name="first" target="1.8" />
       <module name="hewei" target="1.5" />

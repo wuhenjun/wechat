@@ -1,4 +1,4 @@
-package com.cloud.user.utils;
+package com.cloud.util;
 
 import java.io.Serializable;
 

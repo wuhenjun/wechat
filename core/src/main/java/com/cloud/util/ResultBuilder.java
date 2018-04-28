@@ -1,4 +1,6 @@
-package com.cloud.user.utils;
+package com.cloud.util;
+
+import com.cloud.util.ResultInfo;
 
 import java.io.Serializable;
 
