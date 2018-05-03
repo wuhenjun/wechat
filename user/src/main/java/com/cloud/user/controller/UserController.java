@@ -1,11 +1,12 @@
 package com.cloud.user.controller;
 
+
+
+import com.cloud.aspect.LoginCheck;
 import com.cloud.user.model.User;
 import com.cloud.user.service.UserService;
 import com.cloud.user.utils.RedisUtil;
-import com.cloud.util.ResultBuilder;
-import com.cloud.util.ResultInfo;
-import com.cloud.util.CryptoUtils;
+import com.cloud.util.*;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,8 +46,13 @@ public class UserController {
 
     @RequestMapping(value = "/updateUserInfo",method = RequestMethod.POST)
     @ApiOperation(value = "updateUserInfo")
-    public ResultInfo<User> updateUserInfo(@ApiParam(value="nickName") String nickName,@ApiParam(value="sign") String sign,
+    @LoginCheck
+    public ResultInfo<User> updateUserInfo(@ApiParam(value="nickName") String nickName, @ApiParam(value="sign") String sign,
                                            @ApiParam(value="icon") MultipartFile icon){
-      return null;
+         com.cloud.model.User user = UserUtil.getUser();
+         user.setNickName(nickName);
+         user.setSign(sign);
+         user.setIcon(FileUploadUtils.fileUpload(icon, UserUtil.getUser().getUserId()));
+        return ResultBuilder.build(user);
     }
 }

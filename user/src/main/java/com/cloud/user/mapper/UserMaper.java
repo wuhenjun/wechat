@@ -25,4 +25,10 @@ public interface UserMaper {
      * @return
      */
     public int updateUserInfo(User user);
+    /**
+     * 根据用户ID查询用户
+     * @param userId
+     * @return
+     */
+    public User findUserById(Integer userId);
 }

@@ -27,4 +27,14 @@
         WHERE EMAIL=#{userAccount} AND PASSWORD=#{password}
     </select>
 
+    <update id="updateUserInfo" parameterType="com.cloud.user.model.User">
+        UPDATE HW_USER SET NICK_NAME=#{nickName},SIGN=#{sign},ICON=#{icon} WHERE USER_ID=#{userId}
+    </update>
+
+    <select id="findUserById" parameterType="int" resultType="com.cloud.user.model.User">
+        SELECT USER_ID AS userId,EMAIL as userAccount,GENDER as gender,NICK_NAME as nickName,SIGN as sign,ICON as icon
+        FROM HW_USER
+        WHERE USER_ID=#{userId}
+    </select>
+
 </mapper>

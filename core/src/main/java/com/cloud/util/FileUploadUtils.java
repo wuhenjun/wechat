@@ -14,7 +14,7 @@ public class FileUploadUtils {
      * @param userId
      * @return
      */
-    public static String fileUpload(MultipartFile files,String userId){
+    public static String fileUpload(MultipartFile files,Integer userId){
         return Optional.ofNullable(files).map(x->{
 
                  if (x != null) {// 判断上传的文件是否为空
